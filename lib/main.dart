@@ -1,4 +1,4 @@
-import 'package:alpaca_track/HomeScreen.dart';
+import 'package:alpaca_track/StartScreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(), // Ensure HomeScreen is defined correctly
+      home: StartScreen(), // Ensure HomeScreen is defined correctly
     );
   }
 }

@@ -11,27 +11,29 @@ class AboutDeviceScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // App title
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: 'Alpaca',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+            Center(
+              child: RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Alpaca',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  TextSpan(
-                    text: 'Track',
-                    style: TextStyle(
-                      color: Colors.green,
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
+                    TextSpan(
+                      text: 'Track',
+                      style: TextStyle(
+                        color: Colors.green,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 20),
@@ -48,17 +50,17 @@ class AboutDeviceScreen extends StatelessWidget {
             ),
             SizedBox(height: 20),
             // About the device title
-            Text(
-              'About the device:',
-              textAlign: TextAlign.center, // Align the text in the center
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                color: Colors.black,
+            Center(
+              child: Text(
+                'About the Device:',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
             ),
             SizedBox(height: 10),
-
             // Image of the collar
             Center(
               child: Image.asset(
@@ -92,19 +94,6 @@ class AboutDeviceScreen extends StatelessWidget {
             ),
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.green,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'About',
-          ),
-        ],
       ),
     );
   }
