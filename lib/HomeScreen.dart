@@ -105,22 +105,51 @@ class HomeContent extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                'Alpaca ID:  $alpacaId',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[800],
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Alpaca ID: ',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextSpan(
+                      text: '$alpacaId',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: const Color.fromARGB(255, 163, 162, 162),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-              Text(
-                'Belt ID:  i.e. 00001',
-                style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.grey[800],
+              Text.rich(
+                TextSpan(
+                  children: [
+                    TextSpan(
+                      text: 'Belt ID: ',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    TextSpan(
+                      text: 'i.e. 00001',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: const Color.fromARGB(255, 163, 162, 162),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ],
           ),
+
           const SizedBox(height: 20),
           // Navigation options
           Expanded(
@@ -183,8 +212,7 @@ class HomeContent extends StatelessWidget {
               context.findAncestorStateOfType<_HomeScreenState>();
           // ignore: invalid_use_of_protected_member
           homeScreenState?.setState(() {
-            homeScreenState._currentIndex =
-                index; // Navigate to selected index
+            homeScreenState._currentIndex = index; // Navigate to selected index
           });
         },
         style: ElevatedButton.styleFrom(

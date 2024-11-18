@@ -104,27 +104,66 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
               ),
             ),
             SizedBox(height: 10),
+            // Heart Rate title
             Text(
               'Heart Rate',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.black,
+              ),
+              textAlign: TextAlign.left,
             ),
-            SizedBox(height: 10),
-            // Alpaca and Belt IDs
+            SizedBox(height: 20),
+            // Alpaca ID and Belt ID with bold and grey styling
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Alpaca ID:  ${widget.alpacaId}', // Display passed Alpaca ID
-                  style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Alpaca ID: ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: widget.alpacaId,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 163, 162, 162),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  'Belt ID:  i.e. 00001',
-                  style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Belt ID: ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'i.e. 00001',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 163, 162, 162),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             // Graph Display
             Expanded(
               child: SfCartesianChart(
@@ -149,7 +188,7 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             // Heart rate details
             Text(
               'Date/ Time:   $_currentDateTime',

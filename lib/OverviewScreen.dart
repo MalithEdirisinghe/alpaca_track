@@ -52,24 +52,58 @@ class OverviewScreen extends StatelessWidget {
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
             ),
             SizedBox(height: 10),
             // Alpaca and Belt IDs
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Alpaca ID: $alpacaId', // Dynamically display Alpaca ID
-                  style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Alpaca ID: ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: '$alpacaId',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 163, 162, 162),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  'Belt ID: i.e. 00001',
-                  style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Belt ID: ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'i.e. 00001',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 163, 162, 162),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 50),
             // Details
             Row(
               children: [

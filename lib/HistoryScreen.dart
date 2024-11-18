@@ -56,28 +56,63 @@ class _HistoryScreenState extends State<HistoryScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 20),
             // Title
             Text(
               'History',
               style: TextStyle(
                 fontSize: 22,
                 fontWeight: FontWeight.bold,
+                color: Colors.black,
               ),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.left,
             ),
-            SizedBox(height: 10),
-            // Alpaca and Belt IDs
+            SizedBox(height: 20),
+            // Alpaca and Belt IDs with bold and grey styling
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Alpaca ID: ${widget.alpacaId}', // Display passed Alpaca ID
-                  style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Alpaca ID: ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: widget.alpacaId,
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 163, 162, 162),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                Text(
-                  'Belt ID: i.e. 00001',
-                  style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+                Text.rich(
+                  TextSpan(
+                    children: [
+                      TextSpan(
+                        text: 'Belt ID: ',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black,
+                        ),
+                      ),
+                      TextSpan(
+                        text: 'i.e. 00001',
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: const Color.fromARGB(255, 163, 162, 162),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

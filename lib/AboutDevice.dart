@@ -44,11 +44,13 @@ class AboutDeviceScreen extends StatelessWidget {
             TextField(
               controller: _alpacaIdController,
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search, color: Colors.grey),
+                prefixIcon: Icon(Icons.search, color: Colors.black),
                 hintText: 'Enter alpaca ID (i.e. 12345)',
+                hintStyle: TextStyle(
+                    color: const Color.fromARGB(255, 201, 200, 200)), // Change hint text color here
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(10),
-                  borderSide: BorderSide(color: Colors.grey),
+                  borderSide: BorderSide(color: Colors.black),
                 ),
               ),
               keyboardType: TextInputType.number,
@@ -124,7 +126,7 @@ class AboutDeviceScreen extends StatelessWidget {
               'Peruvian highlands. Built with durable, weather-resistant materials, this advanced '
               'collar is tailored to track and monitor critical data on alpacas in their natural habitat '
               'without impacting their comfort.',
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, color: Colors.grey[800]),
             ),
             SizedBox(height: 20),
@@ -136,7 +138,14 @@ class AboutDeviceScreen extends StatelessWidget {
               'power the device, ensuring autonomous, off-grid functionality. A separate battery '
               'compartment simplifies maintenance, securing sensors and wiring from wear and '
               'tangling.',
-              textAlign: TextAlign.justify,
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, color: Colors.grey[800]),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Designed for durability, practicality, and ease of use, this collar represents a  '
+              'breakthrough solution for field-based wildlife monitoring.',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 16, color: Colors.grey[800]),
             ),
           ],
