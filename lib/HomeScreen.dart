@@ -1,34 +1,43 @@
 import 'package:flutter/material.dart';
-import 'AboutDevice.dart'; // Import AboutDevice screen
-import 'GpsTrackingScreen.dart'; // Import GpsTrackingScreen
-import 'HeartRateScreen.dart'; // Import HeartRateScreen
-import 'TempScreen.dart'; // Import TempScreen
-import 'OverviewScreen.dart'; // Import OverviewScreen
-import 'HistoryScreen.dart'; // Import HistoryScreen
+import 'GpsTrackingScreen.dart';
+import 'HeartRateScreen.dart';
+import 'TempScreen.dart';
+import 'OverviewScreen.dart';
+import 'HistoryScreen.dart';
 
 class HomeScreen extends StatefulWidget {
+  final String alpacaId; // Alpaca ID passed to the screen
+
+  HomeScreen({required this.alpacaId});
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _currentIndex = 0; // Tracks the current selected tab
+  int _currentIndex = 0;
 
-  final List<Widget> _screens = [
-    HomeContent(), // Home Screen Content
-    GpsTrackingScreen(), // GPS Tracker Screen
-    HeartRateScreen(), // Heart Rate Screen
-    TempScreen(), // Temp Screen
-    OverviewScreen(), // Overview Screen
-    HistoryScreen(), // History Screen
-    AboutDeviceScreen(), // AboutDevice screen
-  ];
+  late final List<Widget> _screens;
+
+  @override
+  void initState() {
+    super.initState();
+    // Initialize screens with the passed alpacaId
+    _screens = [
+      HomeContent(alpacaId: widget.alpacaId),
+      GpsTrackingScreen(alpacaId: widget.alpacaId),
+      HeartRateScreen(alpacaId: widget.alpacaId),
+      TempScreen(alpacaId: widget.alpacaId),
+      OverviewScreen(alpacaId: widget.alpacaId),
+      HistoryScreen(alpacaId: widget.alpacaId),
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _screens[_currentIndex], // Dynamically display the selected screen
+      body: _screens[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _currentIndex,
@@ -36,19 +45,17 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: Colors.grey,
         onTap: (index) {
           setState(() {
-            _currentIndex = index; // Switch between screens
+            _currentIndex = index; // Change screen on tap
           });
         },
-        items: [
+        items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.location_on), label: 'GPS'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.favorite), label: 'Heart Rate'),
+          BottomNavigationBarItem(icon: Icon(Icons.favorite), label: 'Heart'),
           BottomNavigationBarItem(icon: Icon(Icons.thermostat), label: 'Temp'),
           BottomNavigationBarItem(
               icon: Icon(Icons.assessment), label: 'Overview'),
           BottomNavigationBarItem(icon: Icon(Icons.history), label: 'History'),
-          BottomNavigationBarItem(icon: Icon(Icons.info), label: 'About'),
         ],
       ),
     );
@@ -56,6 +63,10 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class HomeContent extends StatelessWidget {
+  final String alpacaId;
+
+  HomeContent({required this.alpacaId});
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -63,8 +74,10 @@ class HomeContent extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
+          // App title
           Center(
             child: RichText(
+              textAlign: TextAlign.center,
               text: const TextSpan(
                 children: [
                   TextSpan(
@@ -87,12 +100,13 @@ class HomeContent extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
+          // Alpaca and Belt IDs
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Alpaca ID:  i.e. 12345',
+                'Alpaca ID:  $alpacaId',
                 style: TextStyle(
                   fontSize: 16,
                   color: Colors.grey[800],
@@ -107,7 +121,8 @@ class HomeContent extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
+          // Navigation options
           Expanded(
             child: ListView(
               children: [
@@ -115,66 +130,37 @@ class HomeContent extends StatelessWidget {
                   context,
                   label: '  GPS Tracker',
                   icon: Icons.location_on,
-                  onTap: () {
-                    final homeScreenState =
-                        context.findAncestorStateOfType<_HomeScreenState>();
-                    homeScreenState?.setState(() {
-                      homeScreenState._currentIndex = 1; // Navigate to GPS
-                    });
-                  },
+                  index: 1,
                 ),
                 buildOptionButton(
                   context,
                   label: '  Heart Rate',
                   icon: Icons.favorite,
-                  onTap: () {
-                    final homeScreenState =
-                        context.findAncestorStateOfType<_HomeScreenState>();
-                    homeScreenState?.setState(() {
-                      homeScreenState._currentIndex =
-                          2; // Navigate to Heart Rate
-                    });
-                  },
+                  index: 2,
                 ),
                 buildOptionButton(
                   context,
                   label: '  Temperature',
                   icon: Icons.thermostat,
-                  onTap: () {
-                    final homeScreenState =
-                        context.findAncestorStateOfType<_HomeScreenState>();
-                    homeScreenState?.setState(() {
-                      homeScreenState._currentIndex = 3; // Navigate to Temp
-                    });
-                  },
+                  index: 3,
                 ),
                 buildOptionButton(
                   context,
                   label: '  Overview',
                   icon: Icons.assessment,
-                  onTap: () {
-                    final homeScreenState =
-                        context.findAncestorStateOfType<_HomeScreenState>();
-                    homeScreenState?.setState(() {
-                      homeScreenState._currentIndex = 4; // Navigate to Overview
-                    });
-                  },
+                  index: 4,
                 ),
                 buildOptionButton(
                   context,
                   label: '  History',
                   icon: Icons.history,
-                  onTap: () {
-                    final homeScreenState =
-                        context.findAncestorStateOfType<_HomeScreenState>();
-                    homeScreenState?.setState(() {
-                      homeScreenState._currentIndex = 5; // Navigate to History
-                    });
-                  },
+                  index: 5,
                 ),
               ],
             ),
           ),
+          const SizedBox(height: 20),
+          // Logo image
           Container(
             height: 200,
             child: Image.asset(
@@ -188,19 +174,25 @@ class HomeContent extends StatelessWidget {
   }
 
   Widget buildOptionButton(BuildContext context,
-      {required String label,
-      required IconData icon,
-      required VoidCallback onTap}) {
+      {required String label, required IconData icon, required int index}) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: ElevatedButton(
-        onPressed: onTap,
+        onPressed: () {
+          final homeScreenState =
+              context.findAncestorStateOfType<_HomeScreenState>();
+          // ignore: invalid_use_of_protected_member
+          homeScreenState?.setState(() {
+            homeScreenState._currentIndex =
+                index; // Navigate to selected index
+          });
+        },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.green[100],
-          padding: EdgeInsets.symmetric(vertical: 16),
+          padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10),
-            side: BorderSide(color: Colors.black),
+            side: const BorderSide(color: Colors.black),
           ),
         ),
         child: Row(
@@ -209,7 +201,7 @@ class HomeContent extends StatelessWidget {
             Expanded(
               child: Text(
                 label,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 22,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -221,7 +213,7 @@ class HomeContent extends StatelessWidget {
               color: Colors.black,
               size: 28,
             ),
-            SizedBox(width: 25),
+            const SizedBox(width: 25),
           ],
         ),
       ),

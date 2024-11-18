@@ -4,6 +4,10 @@ import 'dart:async';
 import 'dart:math';
 
 class HeartRateScreen extends StatefulWidget {
+  final String alpacaId; // Accept Alpaca ID
+
+  HeartRateScreen({required this.alpacaId});
+
   @override
   _HeartRateScreenState createState() => _HeartRateScreenState();
 }
@@ -111,7 +115,7 @@ class _HeartRateScreenState extends State<HeartRateScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Alpaca ID:  i.e. 12345',
+                  'Alpaca ID:  ${widget.alpacaId}', // Display passed Alpaca ID
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
                 Text(

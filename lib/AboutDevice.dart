@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'HomeScreen.dart'; // Import HomeScreen
 
 class AboutDeviceScreen extends StatelessWidget {
+  final TextEditingController _alpacaIdController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,6 +42,7 @@ class AboutDeviceScreen extends StatelessWidget {
             SizedBox(height: 20),
             // Search bar
             TextField(
+              controller: _alpacaIdController,
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search, color: Colors.grey),
                 hintText: 'Enter alpaca ID (i.e. 12345)',
@@ -47,6 +51,49 @@ class AboutDeviceScreen extends StatelessWidget {
                   borderSide: BorderSide(color: Colors.grey),
                 ),
               ),
+              keyboardType: TextInputType.number,
+            ),
+            SizedBox(height: 20),
+            // Search button
+            ElevatedButton(
+              onPressed: () {
+                String alpacaId = _alpacaIdController.text;
+                if (alpacaId.length == 5 && int.tryParse(alpacaId) != null) {
+                  // Navigate to HomeScreen and pass Alpaca ID
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => HomeScreen(
+                        alpacaId: alpacaId, // Pass Alpaca ID to HomeScreen
+                      ),
+                    ),
+                  );
+                } else {
+                  // Show an error dialog
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Invalid ID'),
+                      content: Text('Please enter a valid 5-digit Alpaca ID.'),
+                      actions: [
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pop(context);
+                          },
+                          child: Text('OK'),
+                        ),
+                      ],
+                    ),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Text('Search'),
             ),
             SizedBox(height: 20),
             // About the device title

@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class GpsTrackingScreen extends StatelessWidget {
+  final String alpacaId; // Accept Alpaca ID
+
+  GpsTrackingScreen({required this.alpacaId});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,14 +45,14 @@ class GpsTrackingScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Alpaca ID:  i.e. 12345',
+                  'Alpaca ID:  $alpacaId', // Display the passed Alpaca ID
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[800],
                   ),
                 ),
                 Text(
-                  'Belt ID:  i.e. 00001',
+                  'Belt ID:  i.e. 00001', // Static Belt ID (Modify as needed)
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey[800],

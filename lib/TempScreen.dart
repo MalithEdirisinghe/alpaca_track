@@ -5,6 +5,10 @@ import 'dart:async';
 import 'dart:math';
 
 class TempScreen extends StatefulWidget {
+  final String alpacaId; // Accept Alpaca ID
+
+  TempScreen({required this.alpacaId});
+
   @override
   _TempScreenState createState() => _TempScreenState();
 }
@@ -18,7 +22,6 @@ class _TempScreenState extends State<TempScreen> {
     super.initState();
     _generateMockData();
     _startUpdatingGraph();
-    _updateCurrentDateTime();
   }
 
   @override
@@ -27,40 +30,30 @@ class _TempScreenState extends State<TempScreen> {
     super.dispose();
   }
 
-  // Update the current date and time every minute
-  void _updateCurrentDateTime() {
-    Timer.periodic(Duration(minutes: 1), (timer) {
-      setState(() {
-      });
-    });
-  }
-
-  // Format the date and time as "dd/MM/yyyy hh:mm"
-  String _formatDateTime(DateTime dateTime) {
-    return "${dateTime.day.toString().padLeft(2, '0')}/${dateTime.month.toString().padLeft(2, '0')}/${dateTime.year} ${dateTime.hour.toString().padLeft(2, '0')}:${dateTime.minute.toString().padLeft(2, '0')}";
-  }
-
+  // Generate mock data for the graph
   void _generateMockData() {
     final Random random = Random();
     _data = List.generate(
       20,
       (index) => GraphData(
-          time: DateTime.now().add(Duration(minutes: -index * 5)),
-          value: 36.5 + random.nextDouble() * 1.5),
+        time: DateTime.now().add(Duration(minutes: -index * 5)),
+        value: 36.5 + random.nextDouble() * 1.5,
+      ),
     ).reversed.toList(); // Reverse to make the latest data on the right
   }
 
+  // Start updating the graph with new random data
   void _startUpdatingGraph() {
     final Random random = Random();
     _timer = Timer.periodic(Duration(seconds: 30), (timer) {
       setState(() {
-        _data.removeAt(0);
+        _data.removeAt(0); // Remove the oldest data
         _data.add(
           GraphData(
             time: DateTime.now(),
             value: 36.5 + random.nextDouble() * 1.5,
           ),
-        );
+        ); // Add new data
       });
     });
   }
@@ -118,11 +111,11 @@ class _TempScreenState extends State<TempScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Alpaca ID:  i.e. 12345',
+                  'Alpaca ID: ${widget.alpacaId}', // Display Alpaca ID
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
                 Text(
-                  'Belt ID:  i.e. 00001',
+                  'Belt ID: i.e. 00001',
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
               ],
@@ -153,7 +146,7 @@ class _TempScreenState extends State<TempScreen> {
             ),
             // Graph note
             Text(
-              'Note: this graph should show the real-time data collected from temperature sensor',
+              'Note: this graph shows the real-time data collected from the temperature sensor.',
               textAlign: TextAlign.center,
               style: TextStyle(fontSize: 12, color: Colors.grey),
             ),

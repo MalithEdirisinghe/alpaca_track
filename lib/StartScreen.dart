@@ -1,5 +1,6 @@
+import 'package:alpaca_track/AboutDevice.dart';
 import 'package:flutter/material.dart';
-import 'HomeScreen.dart'; // Import the AboutDevice screen
+// Import the AboutDevice screen
 
 class StartScreen extends StatelessWidget {
   @override
@@ -61,7 +62,7 @@ class StartScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => HomeScreen(),
+                      builder: (context) => AboutDeviceScreen(),
                     ), // Navigate to AboutDevice screen
                   );
                 },

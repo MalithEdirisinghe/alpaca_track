@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 
 class OverviewScreen extends StatelessWidget {
+  final String alpacaId; // Accept Alpaca ID
+
+  OverviewScreen({required this.alpacaId});
+
   @override
   Widget build(BuildContext context) {
     // Mock data for bpm and temperature
@@ -56,11 +60,11 @@ class OverviewScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Alpaca ID:  i.e. 12345',
+                  'Alpaca ID: $alpacaId', // Dynamically display Alpaca ID
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
                 Text(
-                  'Belt ID:  i.e. 00001',
+                  'Belt ID: i.e. 00001',
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
               ],
@@ -100,7 +104,7 @@ class OverviewScreen extends StatelessWidget {
                 ),
                 SizedBox(width: 10),
                 Text(
-                  'i.e. 12345',
+                  alpacaId, // Dynamically display Alpaca ID
                   style: TextStyle(
                     fontSize: 16,
                     color: Colors.grey,

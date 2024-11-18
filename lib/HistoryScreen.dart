@@ -3,6 +3,10 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HistoryScreen extends StatefulWidget {
+  final String alpacaId; // Accept Alpaca ID
+
+  HistoryScreen({required this.alpacaId});
+
   @override
   _HistoryScreenState createState() => _HistoryScreenState();
 }
@@ -68,11 +72,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Alpaca ID:  i.e. 12345',
+                  'Alpaca ID: ${widget.alpacaId}', // Display passed Alpaca ID
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
                 Text(
-                  'Belt ID:  i.e. 00001',
+                  'Belt ID: i.e. 00001',
                   style: TextStyle(fontSize: 16, color: Colors.grey[800]),
                 ),
               ],
